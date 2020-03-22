@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BudgetTrackingApp"
+             xmlns:data="clr-namespace:BudgetTrackingApp.Models"
+             mc:Ignorable="d"
+             x:Class="BudgetTrackingApp.ExpensesPage" Title="Expense Categories" >
+    <!--ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="10, 20, 10, 0" />
+            <On Platform="Android, UWP" Value="10, 0" />
+        </OnPlatform>
+    </-->
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical" BackgroundColor="Black" >
+
+            <ListView x:Name="ListViewExpenses" ItemSelected="HandleItemSelected" SelectionMode="Single"
+                           HasUnevenRows="True"  CachingStrategy="RecycleElement"
+                        ItemsSource="{Binding expenses,Mode=TwoWay}">
+           
+                <!--ListView.Header>
+                    <Grid >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Text="Expense Categories" BackgroundColor="HotPink" FontAttributes="Bold" Grid.ColumnSpan="2" Grid.Row="0" FontSize="25" Margin="20,0,0,0" HorizontalTextAlignment="Center"/>
+                        
+                    </Grid>
+                </-->
+                <ListView.ItemTemplate>
+                    
+                    <DataTemplate >
+                        <ViewCell>
+                            <Frame OutlineColor="GreenYellow" BackgroundColor="Black"
+                               Padding="9" >
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="{x:Binding ImageFile,Mode=TwoWay}" BackgroundColor="Black"
+                                    WidthRequest="100" HeightRequest="100"
+                                      
+                                       />
+                                    <Label
+                                    Text="{x:Binding expenseCategory}" x:Name="expCatg"
+                                    FontSize="24" FontAttributes="Bold"
+                                    Margin="12,0,0,0" TextColor="White" WidthRequest="180" HeightRequest="100"
+                                  
+                                  
+                                    VerticalTextAlignment="Center">
+                                        <!--Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="expenseCategory"   />
+
+                                        </-->
+
+                                    </Label>
+                                    <StackLayout Margin="30,0,0,0" HorizontalOptions="End"  >
+                                    <Label Text="Cost" FontSize="20" VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="Orange" ></Label>
+
+                                        
+                                        <Entry Placeholder="$    " x:Name="ExpCatCost" FontSize="22" Text="{Binding expenseCost, Mode=TwoWay}" HorizontalOptions="EndAndExpand" FontAttributes="Bold" BindingContextChanged="OnBindingContextChanged" VerticalTextAlignment="Center" IsReadOnly="True" TextColor="LightGreen"/>
+                            </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:BudgetTrackingApp"
+             xmlns:data="clr-namespace:BudgetTrackingApp.Models"
+             mc:Ignorable="d"
+             x:Class="BudgetTrackingApp.HomeSubCtegory" Title="SubCategory Expenses" >
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+         
+        
+            <Grid >
+                <Frame Padding="9" OutlineColor="GreenYellow" Grid.Row="0" Grid.ColumnSpan="3">
+               
+            <StackLayout Orientation="Horizontal" >
+                    <Label Text="                 "></Label>
+                        <Entry Placeholder="                    " x:Name="Subcat1" FontSize="21" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center" FontFamily="Arial" ></Entry>
+                        <!--Label Text="{Binding SubCat1}        "  x:Name="Subcat1" FontSize="18" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center"></-->
+                        <Label Text="Cost" FontSize="20" FontAttributes="Bold" VerticalTextAlignment="Center"  TextColor="Red" FontFamily="Arail"></Label>
+
+                        <Entry  Placeholder="$         "  x:Name="homecatCost" FontSize="21" FontAttributes="Bold"  Margin="20,0,0,0" TextColor="Green" FontFamily="Arial"
+                            VerticalTextAlignment="Center"></Entry>
+                
+            </StackLayout>
+                </Frame>
+                <Frame Padding="9" OutlineColor="GreenYellow" Grid.Row="1" Grid.ColumnSpan="3">
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="                 "></Label>
+                        <Entry Placeholder="                    " x:Name="Subcat2" FontFamily="Arial" FontSize="21" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center" ></Entry>
+                        <!--Label Text="{Binding SubCat1}        "  x:Name="Subcat1" FontSize="18" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center"></-->
+
+
+                        <Label Text="Cost"  FontSize="20" TextColor="Red" FontFamily="Arial" FontAttributes="Bold" VerticalTextAlignment="Center"></Label>
+
+                        <Entry  Placeholder="$      "  x:Name="UtilcatCost" TextColor="Green" FontFamily="Arial" FontSize="21" FontAttributes="Bold" Margin="20,0,0,0" VerticalTextAlignment="Center"></Entry>
+                    </StackLayout>
+                </Frame>
+                <Frame Padding="9" OutlineColor="GreenYellow" Grid.Row="2" Grid.ColumnSpan="3">
+                    <StackLayout Orientation="Horizontal" >
+                        <Label Text="                 "></Label>
+                        <Entry Placeholder="                     " FontFamily="Arial" x:Name="Subcat3" FontSize="21" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center" ></Entry>
+                        <!--Label Text="{Binding SubCat1}        "  x:Name="Subcat1" FontSize="18" FontAttributes="Bold" Margin="10,0,0,0" VerticalTextAlignment="Center"></-->
+                        <Label Text="Cost"  FontSize="20" FontAttributes="Bold" VerticalTextAlignment="Center" TextColor="Red" FontFamily="Arial"></Label>
+
+                        <Entry  Placeholder="$       "  x:Name="otherCost" TextColor="Green" FontFamily="Arial" FontSize="21" FontAttributes="Bold" VerticalTextAlignment="Center" Margin="20,0,0,0"></Entry>
+                    </StackLayout>
+                </Frame>
+                <Button Grid.Row="3" Text="Save"  BackgroundColor="Green" TextColor="White" FontFamily="Arial"
+                    Clicked="OnSaveButtonClicked"/>
+                <Button Grid.Row="3" Margin="50,0,0,0"  Grid.Column="1" BackgroundColor="Red" TextColor="White" FontFamily="Arial"
+                    Text="Cancel"
+                    Clicked="OnCancelButtonClicked"/>
+            </Grid>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

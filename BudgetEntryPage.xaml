@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BudgetTrackingApp.BudgetEntryPage" Title="Budget Tracking App">
+    <ContentPage.Content>
+
+        <StackLayout Margin="10,35,10,10">
+            <Label Text="You haven't set your Budget.Please go ahead and set." TextColor="DarkGreen" FontSize="Large" FontFamily="Arial">
+                
+            </Label>
+            
+            <Editor x:Name="budget"
+                Text="{Binding Budget}"
+                Placeholder="Enter your budget" FontSize="Large"
+                HeightRequest="80" />
+
+            <!--Picker x:Name="BudgetTimeperiod"  Title="Select timeperiod of budegt" HorizontalOptions="FillAndExpand" HeightRequest="70">
+                <Picker.Items>
+                    <x:String>Week</x:String>
+                    <x:String>Month</x:String>
+                    <x:String>Year</x:String>
+                </Picker.Items>
+            </-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Row="1" Text="Save" BackgroundColor="Green" TextColor="White"
+                    Clicked="OnSaveButtonClicked"/>
+                <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Red" TextColor="White"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
