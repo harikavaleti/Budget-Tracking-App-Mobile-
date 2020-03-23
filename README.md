@@ -19,3 +19,7 @@ as mentioned above we can see it. Along with these we are displaying out the cat
 entered previously. If user wants to edit budget , on click of budget amount we are showing budget entry page so that user can update his budget and
 new budget will reflect on app.
 
+
+Thank you for exploring
+---------
+
