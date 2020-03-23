@@ -8,6 +8,8 @@ namespace BudgetTrackingApp
 {
     public partial class App : Application
     {
+        public static string IsBudgetSet { get; set; }
+        public static string BudgetFile { get; set; }
         public static string FolderPath { get; set; }
         public static string specificFolder { get; set; }
         public static decimal BudgetCost { get; set; }
@@ -34,14 +36,35 @@ namespace BudgetTrackingApp
             {
                 Directory.CreateDirectory(App.specificFolder);
             }
-            if(SetInitialBudget == false)
+            BudgetFile = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/IsBudgetSet.txt";
+           
+            if(File.Exists(BudgetFile))
             {
-                MainPage = new NavigationPage(new BudgetEntryPage());
+             //  string s = "false" + ":" + "0";
+              // File.WriteAllText(BudgetFile, s);
+
+                string isbudget = File.ReadAllText(BudgetFile);
+
+                var check = isbudget.Split(':');
+
+                IsBudgetSet = check[0];
+
+                if(IsBudgetSet == "True")
+                {
+                    BudgetCost = decimal.Parse(check[1]);
+
+                    MainPage = new NavigationPage(new AddExpenses());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new BudgetEntryPage());
+                }
+               
+                
             }
             else
             {
-               BudgetCost = Expenses.Budget;
-               MainPage = new NavigationPage(new AddExpenses());
+                MainPage = new NavigationPage(new BudgetEntryPage());
 
             }
 

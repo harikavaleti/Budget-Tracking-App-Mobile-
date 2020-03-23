@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
+
 using Xamarin.Forms.Xaml;
 
 
@@ -128,14 +128,14 @@ namespace BudgetTrackingApp
         {
             base.OnAppearing();
 
-           // writeListViewToFile();
-            loadExpensesFromFile = new ObservableCollection<Expenses>();
-            var items = new List<Expenses>();
+        writeListViewToFile();
 
+            loadExpensesFromFile = new ObservableCollection<Expenses>();
+
+            var items = new List<Expenses>();
 
             //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/CategoryList.txt";
             
-
             if (File.Exists(ExpensesPage.Categoryfilename))
             {
                 string[] fileData = File.ReadAllLines(Categoryfilename);
@@ -157,7 +157,7 @@ namespace BudgetTrackingApp
             }
             else
             {
-                return;
+                writeListViewToFile();
             }
          
             ListViewExpenses.ItemsSource = items.ToList();
@@ -304,7 +304,7 @@ allexpcategories.ForEach(x => categories.Add(x));
                 {
                   //  filename = Path.Combine(App.specificFolder, $"{categoryFile}.txt");
 
-                    Navigation.PushAsync(new HomeSubCtegory());
+                   Navigation.PushAsync(new HomeSubCtegory());
     
                     ((ListView)sender).SelectedItem = null;// de-select the row
                 }

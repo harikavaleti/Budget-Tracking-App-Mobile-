@@ -20,6 +20,8 @@ namespace BudgetTrackingApp
             InitializeComponent();
         }
         public Expenses item { get; set; }
+
+        public static string TotalExpenses { get; set; }
         public static DateTime creationdate { get; set; }
         public static string HomeSubcatFile { get; set; }
 
@@ -46,7 +48,7 @@ namespace BudgetTrackingApp
            
             if (ExpensesPage.SelectedCategory == "Home & Utilities")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "HomeCategoryList.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "HomeCategoryList2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -61,8 +63,12 @@ namespace BudgetTrackingApp
                 SubCat3 = Subcat3.Text;
                 
                 homeexpenseCost = homecost + utilcost + othercost;
+
                 TotalHomeExp = homeexpenseCost;
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+
+                creationdate = File.GetLastAccessTime(HomeSubcatFile);
+
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -74,7 +80,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Insurance")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Insurance.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Insurance2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -92,7 +98,9 @@ namespace BudgetTrackingApp
 
                 TotalInsuranceExp = homeexpenseCost;
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
+
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -104,7 +112,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Food")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Food.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Food2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -122,7 +130,9 @@ namespace BudgetTrackingApp
 
                 TotalFoodExp = homeexpenseCost;
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
+
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -134,7 +144,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Travel")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Travel.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Travel2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -152,7 +162,9 @@ namespace BudgetTrackingApp
 
                 TotalTravelExp = homeexpenseCost;
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
+
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -164,7 +176,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Groceries")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Groceries.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Groceries2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -181,8 +193,10 @@ namespace BudgetTrackingApp
                 homeexpenseCost = homecost + utilcost + othercost;
 
                 TotalGroceriesExp = homeexpenseCost;
+                
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -194,7 +208,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Shopping & Entertainment")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "ShoppingEntertainment.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "ShoppingEntertainment2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -212,9 +226,11 @@ namespace BudgetTrackingApp
 
                 TotalShoppingExp = homeexpenseCost;
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
 
-                string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
+
+                string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost ;
 
                 File.WriteAllText(HomeSubcatFile, categorydata);
 
@@ -224,7 +240,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Cash, Checks & Misc")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "MiscList.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "MiscList2.txt");
 
                 homecost = decimal.Parse(homecatCost.Text);
 
@@ -242,7 +258,9 @@ namespace BudgetTrackingApp
 
                 TotalMiscExp = homeexpenseCost;
 
-                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost;
+                creationdate = File.GetLastAccessTimeUtc(HomeSubcatFile);
+
+                data = SubCat1 + ":" + homecost + ":" + SubCat2 + ":" + utilcost + ":" + SubCat3 + ":" + othercost + ":" + creationdate;
 
                 string categorydata = SubCat1 + "," + homecost + "," + SubCat2 + "," + utilcost + "," + SubCat3 + "," + othercost;
 
@@ -262,9 +280,11 @@ namespace BudgetTrackingApp
 
             //  Expenses.homeExpenseCost = homeexpenseCost ;
 
-            AddExpenses.TotalExpensesCost = TotalHomeExp + TotalFoodExp + TotalGroceriesExp + TotalInsuranceExp +
-                                            TotalTravelExp + TotalShoppingExp + TotalMiscExp;
+           // AddExpenses.TotalExpensesCost = TotalHomeExp + TotalFoodExp + TotalGroceriesExp + TotalInsuranceExp +
+                                         //   TotalTravelExp + TotalShoppingExp + TotalMiscExp;
             
+        //     TotalExpenses = Path.Combine(App.specificFolder, "TotalExpenses.txt");
+         //   File.WriteAllText(TotalExpenses, (AddExpenses.TotalExpensesCost).ToString());
 
             var expensePage = new ExpensesPage(homeexpenseCost);    
           
@@ -287,7 +307,7 @@ namespace BudgetTrackingApp
             // string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/HomeCategoryList.txt";
             if (ExpensesPage.SelectedCategory == "Home & Utilities")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "HomeCategoryList.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "HomeCategoryList2.txt");
                 if (File.Exists(HomeSubcatFile))
                 {
 
@@ -326,7 +346,7 @@ namespace BudgetTrackingApp
 
             if (ExpensesPage.SelectedCategory == "Insurance")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Insurance.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Insurance2.txt");
 
                 if (File.Exists(HomeSubcatFile))
                 {
@@ -364,7 +384,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Food")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Food.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Food2.txt");
 
                 if (File.Exists(HomeSubcatFile))
                 {
@@ -402,7 +422,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Travel")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Travel.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Travel2.txt");
 
                 if (File.Exists(HomeSubcatFile))
 
@@ -440,7 +460,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Groceries")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "Groceries.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "Groceries2.txt");
 
                 if (File.Exists(HomeSubcatFile))
                 {
@@ -479,7 +499,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Shopping & Entertainment")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "ShoppingEntertainment.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "ShoppingEntertainment2.txt");
 
                 if (File.Exists(HomeSubcatFile))
                 {
@@ -514,7 +534,7 @@ namespace BudgetTrackingApp
             }
             if (ExpensesPage.SelectedCategory == "Cash, Checks & Misc")
             {
-                HomeSubcatFile = Path.Combine(App.specificFolder, "MiscList.txt");
+                HomeSubcatFile = Path.Combine(App.specificFolder, "MiscList2.txt");
 
                 if (File.Exists(HomeSubcatFile))
                 {
@@ -583,12 +603,15 @@ namespace BudgetTrackingApp
             if((ExpensesPage.SelectedCategory == "Home & Utilities"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "HomeExpenseList.Category.txt");
+               
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "HomeExpenseList.Category2.txt");
+
+                homeDetails = homeDetails + ":" + data;
+                File.WriteAllText(App.CatAndsubcatdetailFile, homeDetails);
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 if (File.Exists(App.CatAndsubcatdetailFile))
                 {
-                    homeDetails = homeDetails + ":" + data;
-                    File.WriteAllText(App.CatAndsubcatdetailFile, homeDetails);
+                    
                     string[] lines = File.ReadAllLines(App.CatAndsubcatdetailFile);
                     if (lines.Length > 0)
                     {
@@ -621,7 +644,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Insurance"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Insurance.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Insurance.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 
@@ -660,7 +683,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Food"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Food.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Food.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 
@@ -699,7 +722,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Travel"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Travel.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Travel.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 
@@ -738,7 +761,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Groceries"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Groceries.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Groceries.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 
@@ -777,7 +800,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Shopping & Entertainment"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "ShoppingEntertainment.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "ShoppingEntertainment.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 
@@ -816,7 +839,7 @@ namespace BudgetTrackingApp
             if ((ExpensesPage.SelectedCategory == "Cash, Checks & Misc"))
             {
 
-                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Misc.Category.txt");
+                App.CatAndsubcatdetailFile = Path.Combine(App.specificFolder, "Misc.Category2.txt");
                 //  string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/DetailExpenseList.txt";//
                 homeDetails = homeDetails + ":" + data;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,8 +21,19 @@ namespace BudgetTrackingApp
 
         private void OnSaveButtonClicked(object sender, EventArgs e)
         {
+
+           App.BudgetFile = Path.Combine(App.specificFolder, "IsBudgetSet.txt");
+
             App.SetInitialBudget = true;
+
+            string BudgetSet = App.SetInitialBudget.ToString() + ":" + budget.Text;
+
+            File.WriteAllText(App.BudgetFile, BudgetSet);
+
             Expenses.Budget = decimal.Parse(budget.Text);
+
+
+
             Navigation.PushAsync(new AddExpenses());
            
         }

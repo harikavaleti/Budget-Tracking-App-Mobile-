@@ -27,7 +27,7 @@ namespace BudgetTrackingApp
         public string subcatcost1 { get; set; }
         public string subcatcost2 { get; set; }
         public string subcatcost3 { get; set; }     
-        public DateTime date { get; set; }
+        public string date { get; set; }
 
         public AddExpenses()
         {
@@ -47,7 +47,20 @@ namespace BudgetTrackingApp
          {
                   base.OnAppearing();
 
-               BudgetV = Expenses.Budget;
+            
+
+            string x = (Expenses.Budget).ToString();
+            if (x == "0")
+            {
+                budget.Text = App.BudgetCost.ToString();
+                Settoolbar.Text = "Edit Expenses";
+            }
+            else
+            {
+                budget.Text = Expenses.Budget.ToString();
+                Settoolbar.Text = "Add Expenses";
+            }
+            BudgetV = decimal.Parse(budget.Text);
 
             string fname = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/CategoryList.txt";
 
@@ -70,9 +83,41 @@ namespace BudgetTrackingApp
                 return;
             }
 
-            Totalexpensescost.Text = TotalExpensesCost.ToString();
+            string[] lins = File.ReadAllLines("/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/CategoryList.txt");
+            //    homeexpenseCost = homeexpenseCost + homecatpreviouscost;
+            //      File.WriteAllText(ExpensesPage.Categoryfilename, String.Empty);
+            TotalExpensesCost = 0;
+            for (int i = 0; i < lins.Length; i++)
+            {
+                
+                string lin = lins[i];
+                if ((lin.Contains("Home & Utilities")) || (lin.Contains("Insurance")) || (lin.Contains("Food")) ||
+                        (lin.Contains("Travel")) || (lin.Contains("Groceries")) ||
+                        (lin.Contains("Shopping & Entertainment")) || (lin.Contains("Cash, Checks & Misc")))
+                {
+                    string[] words = lin.Split(':');
+                    lin = words[1];
+                    TotalExpensesCost = TotalExpensesCost + decimal.Parse(lin);
+                }
+            }
 
-               DifferenceAmount = BudgetV - TotalExpensesCost;
+                Totalexpensescost.Text = TotalExpensesCost.ToString();
+        /*    if (File.Exists(HomeSubCtegory.TotalExpenses))
+            {
+                string str = File.ReadAllText(HomeSubCtegory.TotalExpenses);
+
+               Totalexpensescost.Text = str;
+
+                TotalExpensesCost = decimal.Parse(str);
+
+
+            }
+            else
+            {
+                Totalexpensescost.Text = "0";
+            }*/
+
+            DifferenceAmount = BudgetV - TotalExpensesCost;
                
             if(DifferenceAmount > 0)
             {
@@ -88,7 +133,7 @@ namespace BudgetTrackingApp
 
                var Categories = new List<AddExpenses>();
 
-               var files = Directory.EnumerateFiles(App.specificFolder, "*.Category.txt");
+               var files = Directory.EnumerateFiles(App.specificFolder, "*.Category2.txt");
 
                   foreach (var filename in files)
                   {
@@ -109,17 +154,18 @@ namespace BudgetTrackingApp
                           subcatcost2 = line[5],
 
                           subcatName3 = line[6],
-                          subcatcost3 = line[7]
+                          subcatcost3 = line[7],
 
+                          date = line[8] + line[9] + line[10]
                       });
 
                   }
 
-                date= HomeSubCtegory.creationdate;
+                
 
-               CategorieslistView.ItemsSource = Categories.OrderBy(n => n.date).ToList();
+               CategorieslistView.ItemsSource = Categories.OrderBy(n=>n.date).ToList();
 
-               budget.Text = (Expenses.Budget).ToString();
+              
 
          }
         private void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -127,5 +173,23 @@ namespace BudgetTrackingApp
 
         }
 
+        private void OnBudgetAmountClicked(object sender, EventArgs e)
+        {
+
+            App.IsBudgetSet = "false";
+           App.BudgetFile = "/data/user/0/com.companyname.budgettrackingapp/files/.config/MarchExpenses/IsBudgetSet.txt";
+
+                //  File.WriteAllText(App.BudgetFile, String.Empty);
+
+             //   string isbudget = File.ReadAllText(App.BudgetFile);
+
+                string BudgetSet = App.IsBudgetSet.ToString() + ":" + "0";
+
+                File.WriteAllText(App.BudgetFile, BudgetSet);
+                // var BudgetEntryPage = new BudgetEntryPage();
+
+                Navigation.PushAsync(new BudgetEntryPage());
+
+        }
     }
 }

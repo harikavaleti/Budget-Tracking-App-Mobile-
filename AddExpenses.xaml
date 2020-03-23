@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="BudgetTrackingApp.AddExpenses">
+             x:Class="BudgetTrackingApp.AddExpenses" Title="Budget TrackingApp">
     <!--ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness">
             <On Platform="iOS" Value="10, 20, 10, 0" />
@@ -13,7 +13,7 @@
     </-->
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Set/Edit Budget" Clicked="AddExpensesClicked"  >
+        <ToolbarItem Text="{Binding ToolBar}" x:Name="Settoolbar" Clicked="AddExpensesClicked"  >
             
         </ToolbarItem>
     </ContentPage.ToolbarItems>
@@ -21,7 +21,7 @@
    
         <ScrollView BackgroundColor="Black">
       
-        <ListView x:Name="CategorieslistView" HasUnevenRows="True" BackgroundColor="Black"
+        <ListView x:Name="CategorieslistView" HasUnevenRows="True" BackgroundColor="Black" CachingStrategy="RecycleElementAndDataTemplate"
             
               SelectionMode="None" >
             <ListView.Header>
@@ -35,8 +35,12 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Text="BudgetAmount   :"  FontAttributes="Bold"  Grid.Row="0"  FontSize="23" Margin="15,0,0,0" Grid.ColumnSpan="2" TextColor="Red"/>
-                    <Label Text="{Binding BudgetV}" x:Name="budget" FontAttributes="Bold" FontSize="25" Grid.Column="1" Grid.ColumnSpan="2" Margin="30,0,0,0" TextColor="LightGreen"></Label>
-                   
+                    <Label Text="{Binding BudgetV}" x:Name="budget" FontAttributes="Bold" FontSize="25" Grid.Column="1" Grid.ColumnSpan="2" Margin="30,0,0,0" TextColor="LightGreen">
+                        <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBudgetAmountClicked"   />
+
+                    </Label.GestureRecognizers>
+                    </Label>
                     <Label Text="{Binding Message}" x:Name="message" FontAttributes="Bold"  Grid.Row="2" FontSize="23" Margin="10,0,0,0" Grid.ColumnSpan="2" HorizontalTextAlignment="Start" TextColor="Orange"></Label>
                    
                     <Label Text="TotalExpenses    :"  FontAttributes="Bold"  Grid.Row="1" Grid.ColumnSpan="2" FontSize="23" Margin="15,0,0,0"  HorizontalTextAlignment="Start" HorizontalOptions="StartAndExpand" TextColor="Red"/>
@@ -56,13 +60,13 @@
                                 <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
                                         <Label Text="{x:Binding CategoryName}"
-                                    WidthRequest="180" HeightRequest="30"
-                                    FontAttributes="Bold"  FontSize="23" TextColor="Orange" Margin="30,0,0,0"
+                                    WidthRequest="200" HeightRequest="30"
+                                    FontAttributes="Bold"  FontSize="22" TextColor="Orange" Margin="10,0,0,0" HorizontalOptions="FillAndExpand"
                                        />
                                         <Label
                                     Text="{x:Binding CategoryCost, Mode=OneWay}" 
                                     FontSize="23" FontAttributes="Bold"
-                                    Margin="60,0,0,0" WidthRequest="100" HeightRequest="30" TextColor="Orange"
+                                    Margin="90,0,0,0" WidthRequest="100" HeightRequest="30" TextColor="Orange"
                                   
                                   
                                     VerticalTextAlignment="Center">
@@ -95,7 +99,7 @@
                                     <Label Text="{Binding subcatcost3}"  WidthRequest="100" HeightRequest="30" FontSize="18" FontAttributes="Bold" TextColor="LightGreen"></Label>
 
                                     </StackLayout>
-                                <Label Text="{Binding creationdate}" Margin="10,0,0,0" TextColor="Green" FontSize="18" FontAttributes="Bold"></Label>
+                                <Label Text="{Binding date}" Margin="10,0,0,0" TextColor="Green" FontSize="18" FontAttributes="Bold"></Label>
                                 
                             </StackLayout>
                             
